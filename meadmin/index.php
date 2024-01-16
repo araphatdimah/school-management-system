@@ -35,6 +35,7 @@ if (isset($_POST['admin_signin'])) {
 		$_SESSION['t_name'] = 	$username;
 		$_SESSION['t_pwd'] = $pwd;
 		$_SESSION['t_id'] = $teacher_info['t_id'];
+		$_SESSION['t_profile'] = $teacher_info['t_profile'];
 		header("location:teacher_home.php");
 		exit();
 	} else {

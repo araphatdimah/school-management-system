@@ -104,7 +104,7 @@
               </div>
               <div class="col-md-6 col-xs-6 w3l-right-mk">
                 <ul style="list-style-type: none;">
-                  <li class="text">Mobile no : </li>
+                  <li class="text">Mobile No. : </li>
                   <li class="agileits-main"><i class="fa fa-phone" aria-hidden="true"></i><input id="mobile" name="t_phone" type="text" maxlength="10" required=""></li>
                   <li class="text">Address : </li>
                   <li class="agileits-main"><i class="fa fa-home" aria-hidden="true"></i><input id="address" name="t_address" type="text" required=""></li>
@@ -116,6 +116,17 @@
                   <li class="agileits-main"><i class="fa fa-lock" aria-hidden="true"></i><input id="pwd" name="t_pwd" type="password" required=""></li>
                   <li class="text">Confirm Password : </li>
                   <li class="agileits-main"><i class="fa fa-lock" aria-hidden="true"></i><input id="pwd" name="confirm_pwd" type="password" required=""></li>
+                  <li class="text">Profile picture (Optional): </li>
+                  <li class="agileits-main"><i class="fa fa-image" aria-hidden="true"></i><input  
+                    style=" font-size: 1em;
+                      color: #fff;
+                      padding: .9em 1em .9em 2.5em;
+                      margin: 1em 0 2em;
+                      outline: none;
+                      border: none;
+                      background: #002147;
+                      width: 100%;" 
+                    id="profile" name="t_profile" type="file"></li>
                 </ul>
               </div>
             </div>
@@ -175,7 +186,7 @@
               </div>
               <div class="col-md-6 col-xs-6 w3l-right-mk">
                 <ul style="list-style-type: none;">
-                  <li class="text">Home Mobile no : </li>
+                  <li class="text"> Mobile No. : </li>
                   <li class="agileits-main"><i class="fa fa-phone" aria-hidden="true"></i><input id="mobile" name="student_phone" type="text" maxlength="10" required=""></li>
                   <li class="text">Address : </li>
                   <li class="agileits-main"><i class="fa fa-home" aria-hidden="true"></i><input id="address" name="student_address" type="text" required=""></li>
@@ -185,6 +196,17 @@
                   <li class="agileits-main"><i class="fa fa-lock" aria-hidden="true"></i><input id="pwd" name="student_pwd" type="password" required=""></li>
                   <li class="text">Confirm Password : </li>
                   <li class="agileits-main"><i class="fa fa-lock" aria-hidden="true"></i><input id="pwd" name="student_confirm_pwd" type="password" required=""></li>
+                  <li class="text">Profile picture (Optional): </li>
+                  <li class="agileits-main"><i class="fa fa-image" aria-hidden="true"></i><input 
+                  style=" font-size: 1em;
+                    color: #fff;
+                    padding: .9em 1em .9em 2.5em;
+                    margin: 1em 0 2em;
+                    outline: none;
+                    border: none;
+                    background: #002147;
+                    width: 100%;" 
+                id="profile" name="student_profile" type="file"></li>
                 </ul>
               </div>
             </div>

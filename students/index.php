@@ -18,6 +18,7 @@ if (isset($_POST['student_signin'])) {
 		$_SESSION['st_password'] = $st_password;
 		$_SESSION['st_grade'] = $st_results1['student_grade'];
 		$_SESSION['st_id'] = $st_results1['student_id'];
+		$_SESSION['st_profile'] = $st_results1['student_profile'];
 		header("location:home.php");
 	} else {
 		echo "<script>alert('Wrong email or password.');</script>";

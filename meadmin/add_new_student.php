@@ -13,6 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$student_town = $_POST['student_town'];
 	$student_pwd = $_POST['student_pwd'];
 	$student_confirm_pwd = $_POST['student_confirm_pwd'];
+	$student_profile = $_FILES['student_profile'];
+
+	$image_name = $student_profile['name'];
+	$image_temp = $student_profile['tmp_name'];
+	$image_path = "../uploads/".$image_name;
+	move_uploaded_file($image_temp, $image_path);
 
 	$already_stmt = mysqli_prepare($con, "SELECT * FROM student_info WHERE student_name = ?");
 	mysqli_stmt_bind_param($already_stmt, "s", $student_name);
@@ -25,11 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			echo json_encode($already_present);
 		} else {
 			$stmt = mysqli_prepare($con, "INSERT INTO student_info
-				(student_name, student_dob, student_gender, student_parent, student_grade, student_phone, student_address, student_town, student_pwd)
-				 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				(student_name, student_dob, student_gender, student_parent, student_grade, student_phone, student_address, student_town, student_pwd, student_profile)
+				 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			mysqli_stmt_bind_param(
 				$stmt,
-				"sssssssss",
+				"ssssssssss",
 				$student_name,
 				$student_dob,
 				$student_gender,
@@ -38,7 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$student_phone,
 				$student_address,
 				$student_town,
-				$student_confirm_pwd
+				$student_confirm_pwd,
+				$image_path
 			);
 			if (mysqli_stmt_execute($stmt)) {
 				$add = ['added' => 'Student, ' . $student_name . ' has been added successfully.'];

@@ -594,7 +594,7 @@ h3.agileinfo_sign  {
 .newsletter input[type="email"]{
 	width:77%;
 }
-.agileits-main input[type="text"], .agileits-main input[type="email"],  .agileits-main input[type="password"], .agileits-main select {
+.agileits-main input[type="text"], .agileits-main input[type="email"],  .agileits-main input[type="password"], .agileits-main select{
     font-size: 1em;
     color: #fff;
     padding: .9em 1em .9em 2.5em;
@@ -1238,7 +1238,7 @@ text-align:center;
 	.header-w3l h4 {
 		padding: .8em 0 2em;
 	}
-	.agileits-main input[type="text"], .agileits-main input[type="email"] {
+	.agileits-main input[type="text"], .agileits-main input[type="email"], .agileits-main input[type="file"], .agileits-main input[type="password"] {
 		margin: .5em 0 2em;
 	}
 	.agile-submit input[type="submit"] {
@@ -1261,7 +1261,7 @@ text-align:center;
 	.header-w3l h4 {
 		font-size: 1.4em;
 	}
-	.agileits-main input[type="text"], .agileits-main input[type="email"] {
+	.agileits-main input[type="text"], .agileits-main input[type="email"], .agileits-main input[type="file"] {
 		margin:.5em 0 1.5em;
 	}
 	#play {
@@ -1329,10 +1329,10 @@ text-align:center;
 	li.text {
 		font-size: .95em;
 	}
-	.agileits-main input[type="text"], .agileits-main input[type="email"] {
+	.agileits-main input[type="text"], .agileits-main input[type="email"], .agileits-main input[type="file"] {
 		padding: .8em 1em .8em 2em;
 	}
-	.agileits-main input[type="text"], .agileits-main input[type="email"] {
+	.agileits-main input[type="text"], .agileits-main input[type="email"], .agileits-main input[type="file"] {
 		margin: .5em 0 1em;
 	}
 	.agile-submit input[type="submit"] {
@@ -1413,7 +1413,7 @@ text-align:center;
 	.header-w3l h2 {
 		font-size: 2.1em;
 	}
-	.agileits-main input[type="text"], .agileits-main input[type="email"] {
+	.agileits-main input[type="text"], .agileits-main input[type="email"], .agileits-main input[type="file"] {
 		padding: .7em 1em .7em 2em;
 	}
 	.w3l_about_bottom_right {
@@ -1437,7 +1437,7 @@ text-align:center;
 		font-size: 1.5em;
 		padding: .8em 0 2em;
 	}
-	.agileits-main input[type="text"], .agileits-main input[type="email"] {
+	.agileits-main input[type="text"], .agileits-main input[type="email"], .agileits-main input[type="file"] {
 		padding: .9em 1em .9em 2.8em;   
 		margin: 1em 0 2em;
 	}

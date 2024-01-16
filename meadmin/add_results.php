@@ -13,6 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt3 = mysqli_prepare($con, "UPDATE student_info SET `$std_subject` = ? WHERE student_id = ? AND student_name = ?");
     mysqli_stmt_bind_param($stmt3, 'iis', $student_score, $student_id, $student_name);
     mysqli_stmt_execute($stmt3);
-    }
+}
+if(mysqli_stmt_execute($stmt3)){
+    $success = ['success' => $std_subject .' results uploaded successfully'];
+    echo json_encode($success);
+}else{
+    $failure = ['failure' => 'Error:' .mysqli_error($con)];
+    echo json_encode($failure);
+}
 }
 ?>

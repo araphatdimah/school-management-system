@@ -8,6 +8,7 @@ session_start();
 		$st_password = $_SESSION['st_password'];
 		$st_grade = $_SESSION['st_grade'];
 		$st_id = $_SESSION['st_id'];
+		$st_profile = $_SESSION['st_profile'];
 
 		include "../connection.php";
 		$stmt = mysqli_prepare($con, "SELECT * FROM student_info WHERE student_name = ? AND student_id = ?");
@@ -65,8 +66,11 @@ session_start();
 
 		function hideURLbar() {
 			window.scrollTo(0, 1);
-		}
+		} <script src = 'https://kit.fontawesome.com/a076d05399.js' >
 	</script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/icon-font.min.css" type='text/css' />
 	<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 	<link href="css/style.css" rel='stylesheet' type='text/css' />
 	<link href="css/font-awesome.css" rel="stylesheet">
@@ -124,10 +128,10 @@ session_start();
 								<div class="graph">
 									<nav>
 										<ul>
-											<li><a href="#section-1" class="icon-shop"><i class="lnr lnr-briefcase"></i><span> Information</span></a></li>
-											<li><a href="#section-2" class="icon-cup"><i class="fa fa-lock"></i><span> Change Password</span></a></li>
-											<li><a href="#section-3" class="icon-food"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i><span> Teachers</span></a></li>
-											<li><a href="#section-4" class="icon-truck"><i class="fa fa-user"></i><span> Results</span></a></li>
+											<li><a href="#section-1" class="icon-shop"><i class="lnr lnr-briefcase"></i><span> Personal Info</span></a></li>
+											<li><a href="#section-2" class="icon-lab"><i class="fa fa-lock"></i><span> Change Password</span></a></li>
+											<li><a href="#section-3" class="icon-lab"><i class="fas fa-chalkboard-teacher"></i><span> Teachers</span></a></li>
+											<li><a href="#section-4" class="icon-lab"><i class="fa fa-user"></i><span> Results</span></a></li>
 										</ul>
 									</nav>
 									<div class="content tab">
@@ -214,7 +218,7 @@ session_start();
 																		?>
 																		<tr>
 																			<th scope="row"><?php echo $sn; ?></th>
-																			<td></td>
+																			<td><img style="width: 55px; height:43px" class="rounded-circle" src="../uploads/<?php echo isset($row['t_profile']) ? $row['t_profile'] : 'no-image.png'; ?>"></td>
 																			<td><?php echo ucwords($row['t_name']); ?></td> 
 																			<td><?php echo ucwords($row['t_subject']); ?></td> 
 																			<td><?php echo strtolower($row['t_email']); ?></td> 
@@ -254,38 +258,38 @@ session_start();
 													echo "<td rowspan='7'>".$sn. "</td>";
 													echo "<td rowspan='7'>".$row['student_name']."</td>";
 													echo "<td>"."Mathematics"."</td>";
-													echo "<td>".$row['Mathematics']."%"."</td>";
+													echo "<td>" .(isset($row['Mathematics']) ? $row['Mathematics']."%" : "Null")."</td>";
 													echo "<td>"."1"."st"."</td>";
 													echo "<td rowspan='7'>"."<span>"."7"."th"."</span>"."</td>";
 												echo "</tr>";
 												echo "<tr>";
-													echo "<td>"."English" ."Language"."</td>";
-													echo "<td>".$row['English Language']."%"."</td>";
+													echo "<td>"."English " ."Language"."</td>";
+													echo "<td>" .(isset($row['English Language']) ? $row['English Language']."%" : "Null")."</td>";
 													echo "<td>"."7"."th"."</td>";
 												echo "</tr>";
 												echo "<tr>";
-													echo "<td>"."Int". "Science"."</td>";
-													echo "<td>".$row['Int Science']."%"."</td>";
+													echo "<td>"."Int ". "Science"."</td>";
+													echo "<td>" .(isset($row['Int Science']) ? $row['Int Science']."%" : "Null")."</td>";
 													echo "<td>"."1"."st"."</td>";
 												echo "</tr>";
 												echo "<tr>";
-													echo "<td>"."Social" ."Studies"."</td>";
-													echo "<td>".$row['Social Studies']."%"."</td>";
+													echo "<td>"."Social " ."Studies"."</td>";
+													echo "<td>" .(isset($row['Social Studies']) ? $row['Social Studies']."%" : "Null")."</td>";
 													echo "<td>"."3"."rd"."</td>";
 												echo "</tr>";
 												echo "<tr>";
 													echo "<td>"."French"."</td>";
-													echo "<td>".$row['French']."%"."</td>";
+													echo "<td>" .(isset($row['French']) ? $row['French']."%" : "Null")."</td>";
 													echo "<td>"."3"."rd"."</td>";
 												echo "</tr>";
 												echo "<tr>";
 													echo "<td>"."OWOP"."</td>";
-													echo "<td>".$row['OWOP']."%"."</td>";
+													echo "<td>" .(isset($row['OWOP']) ? $row['OWOP']."%" : "Null")."</td>";
 													echo "<td>"."3"."rd"."</td>";
 												echo "</tr>";
 												echo "<tr>";
 													echo "<td>"."ICT"."</td>";
-													echo "<td>".$row['ICT']."%"."</td>";
+													echo "<td>" .(isset($row['ICT']) ? $row['ICT']."%" : "Null")."</td>";
 													echo "<td>"."3"."rd"."</td>";
 												"</tr>";
 													$sn++;
@@ -326,8 +330,6 @@ session_start();
 								</div>
 								<div class="clearfix"> </div>
 							</div>
-
-
 						</div>
 						<!--/charts-inner-->
 					</div>
@@ -341,15 +343,15 @@ session_start();
 		</div>
 		<div class="sidebar-menu">
 			<header class="logo">
-				<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> <a href="index.php"> <span id="logo"> <h1><?php echo $st_username; ?></h1></span> 
+				<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span></a><a href="#"><span id="logo"><h1><?php echo $st_username; ?></h1></span> 
 					<!--<img id="logo" src="" alt="Logo"/>--> 
 				  </a>
 			</header>
 			<div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
 			
 			<div class="down">
-				<a href="#"><img src="images/admin.jpg"></a>
-				<a href="#"><span class=" name-caret"><?php echo $st_username; ?></span></a>
+				<a href="#"><img src="../uploads/<?php echo isset($st_profile) ? $st_profile : 'no-image.png'; ?>"></a>
+				<a href="#"><span class="name-caret"><?php echo $st_username; ?></span></a>
 				<p>Student</p>
 				<ul>
 					<li><a class="tooltips" href="#"><span>Profile</span><i class="lnr lnr-user"></i></a></li>

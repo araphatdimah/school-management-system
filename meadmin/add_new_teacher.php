@@ -15,6 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $t_town = $_POST['t_town'];
         $t_pwd = $_POST['t_pwd'];
         $confirm_pwd = $_POST['confirm_pwd'];
+        $t_profile = $_FILES['t_profile'];
+
+        $image_name = $t_profile['name'];
+        $image_temp = $t_profile['tmp_name'];
+        $image_path = "../uploads/".$image_name;
+        move_uploaded_file($image_temp, $image_path);
 
         $already_stmt = mysqli_prepare($con, "SELECT * FROM t_info WHERE t_name = ?");
         mysqli_stmt_bind_param($already_stmt, "s", $t_name);
@@ -28,11 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         echo json_encode($already_present);
                 } else {
                         $stmt = mysqli_prepare($con, "INSERT INTO t_info
-                  (t_name, t_dob, t_gender, t_subject, t_grade, t_email, t_phone, t_address, t_district, t_town, t_pwd)
-                  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                  (t_name, t_dob, t_gender, t_subject, t_grade, t_email, t_phone, t_address, t_district, t_town, t_pwd, t_profile)
+                  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                         mysqli_stmt_bind_param(
                                 $stmt,
-                                "sssssssssss",
+                                "ssssssssssss",
                                 $t_name,
                                 $t_dob,
                                 $t_gender,
@@ -43,7 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 $t_address,
                                 $t_district,
                                 $t_town,
-                                $confirm_pwd
+                                $confirm_pwd,
+                                $image_path
                         );
                         if (mysqli_stmt_execute($stmt)) {
                                 $add = ['added' => 'Staff, ' . $t_name . ' has been added successfully.'];

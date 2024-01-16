@@ -7,6 +7,7 @@ session_start();
 		$t_name = $_SESSION['t_name'];
 		$t_pwd = $_SESSION['t_pwd'];
 		$t_id = $_SESSION['t_id'];
+		$t_profile = $_SESSION['t_profile'];
 
 		include "../connection.php";
 		$stmt = mysqli_prepare($con, "SELECT * FROM t_info WHERE t_name = ? AND t_pwd = ?");
@@ -68,6 +69,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 	</script>
 	<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link href="css/style.css" rel='stylesheet' type='text/css' />
 	<link href="css/font-awesome.css" rel="stylesheet">
 	<link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'>
@@ -291,7 +293,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<thead>
 														<tr> 
 															<th>#</th> 
-															<th></th>
+															<th colspan="2">Image</th>
 															<th><i class="fa fa-user"></i> Student</th> 
 															<th>Score%</th>
 														</tr> 
@@ -377,7 +379,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							sn++;
 							return `<tr>
 									<th>${sn}</th>
-									<th></th>
+									<td><img style = "width:55px; height:43px" class="rounded-circle" src = "../uploads/${student.student_profile ? student.student_profile : 'no-image.png'}"></td>
 									<td>${student.student_name}</td>
 									<td>${student.student_gender}</td>
 									<td>${student.student_parent}</td>
@@ -404,6 +406,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			sn++;
 				return `<tr>
 							<th scope="row">${sn}</th>
+							<td><img style="width:55px; height:43px" class="rounded-circle" src="../uploads/${item.student_profile ? item.student_profile : 'no-image.png'}"></td>
 							<td><input type="hidden" name="std_id[]" value="${item.student_id}"></td>
 							<td><input type="hidden" name="std_name[]" value = "${item.student_name}">${item.student_name}</td> 
 							<td><input name="std_score[]" type="number" placeholder="Enter score"></td> 
@@ -421,27 +424,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		//ADDING STUDENTS' RESULTS
 		document.getElementById("add_students_results").addEventListener("submit", function(event) {
     		event.preventDefault();
-
-    		const formData = new FormData(document.getElementById("add_students_results"));
-
+ 
 			fetch('add_results.php', {
 				method: 'POST',
-				body: formData
-			})
-			.then(response => {
-				if (!response.ok) {
-					throw new Error('Network response was not ok');
+				body: new FormData(document.getElementById("add_students_results"))
+			}).then(res => res.json()).then(data => {
+				if(data.success){
+					alert(data.success);
+					document.getElementById("add_students_results").reset();
+				}else if(data.failure){
+					alert(data.failure);
 				}
-				return response.text();
+			}).catch(error => {
+				alert("Error: " +error.message);
 			})
-			.then(data => {
-				console.log(data);
-				alert("Results uploaded successfully");
-			})
-			.catch(error => {
-				alert("There was an error: " + error.message);
-			});
-	});
+		});
 	//FETCHING STUDENTS RESULTS PER GRADE
 	document.getElementById("fetch_results_form").addEventListener("submit", function(event){
 		event.preventDefault();
@@ -461,38 +458,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td rowspan="7">${sn}</td>
 								<td rowspan="7">${item.student_name}</td>
 								<td>Mathematics</td>
-								<td>${item.Mathematics}%</td>
+								<td>${item.Mathematics ? item.Mathematics +'%' : 'Null'}</td>
 								<td>1st</td>
 								<td rowspan="7"><span style="font-weight:bold;">7th</span></td>
 							</tr>
 							<tr>
 								<td>English Language</td>
-								<td>${item['English Language']}%</td>
+								<td>${item['English Language'] ? item['English Language']+'%' : 'Null'}</td>
 								<td>7th</td>
 							</tr>
 							<tr>
 								<td>Int. Science</td>
-								<td>${item['Int Science']}%</td>
+								<td>${item['Int Science'] ? item['Int Science']+'%' : 'Null'}</td>
 								<td>1st</td>
 							</tr>
 							<tr>
 								<td>Social Studies</td>
-								<td>${item['Social Studies']}%</td>
+								<td>${item['Social Studies'] ? item['Social Studies']+'%' : 'Null'}</td>
 								<td>3rd</td>
 							</tr>
 							<tr>
 								<td>French</td>
-								<td>${item.French}%</td>
+								<td>${item.French ? item.French+'%' : 'Null'}</td>
 								<td>3rd</td>
 							</tr>
 							<tr>
 								<td>OWOP</td>
-								<td>${item.OWOP}%</td>
+								<td>${item.OWOP ? item.OWOP+'%' : 'Null'}</td>
 								<td>3rd</td>
 							</tr>
 							<tr>
 								<td>ICT</td>
-								<td>${item.ICT}%</td>
+								<td>${item.ICT ? item.ICT+'%' : 'Null'}</td>
 								<td>3rd</td>
 							</tr>`;
 				});
@@ -541,14 +538,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="sidebar-menu">
 			<header class="logo">
-				<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> <a href="index.php"> <span id="logo"> <h1><?php echo $t_name; ?></h1></span> 
+				<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span></a><a href="#"><span id="logo"><h1><?php echo $t_name; ?></h1></span> 
 					<!--<img id="logo" src="" alt="Logo"/>--> 
 				  </a>
 			</header>
 			<div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
 			
 			<div class="down">
-				<a href="#"><img src="images/admin.jpg"></a>
+				<a href="#"><img src="../uploads/<?php echo isset($t_profile) ? $t_profile : 'no-image.png'; ?>"></a>
 				<a href="#"><span class=" name-caret"><?php echo $t_name; ?></span></a>
 				<p>Teacher</p>
 				<ul>

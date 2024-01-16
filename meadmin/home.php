@@ -55,6 +55,7 @@ if (!$_SESSION['admin_username'] && !$_SESSION['admin_password']) {
 	</script>
 	 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">  
 	<!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 	<!-- Custom CSS -->
 	<link href="css/style.css" rel='stylesheet' type='text/css' />
@@ -81,10 +82,10 @@ if (!$_SESSION['admin_username'] && !$_SESSION['admin_password']) {
 	<script>
 		$(document).ready(function() {
 			$("#mySearch2").on("keyup", function() {
-				var value = $(this).val().toLowerCase().trim(); // Ensure trimmed lowercase value
+				var value = $(this).val().toLowerCase().trim();
 				$("#student_list tr").each(function() {
 					var rowText = $(this).text().toLowerCase();
-					$(this).toggle(rowText.indexOf(value) > -1 || value === ""); // Toggle visibility based on match or empty value
+					$(this).toggle(rowText.indexOf(value) > -1 || value === "");
 				});
 			});
 		});
@@ -92,10 +93,10 @@ if (!$_SESSION['admin_username'] && !$_SESSION['admin_password']) {
 	<script>
 		$(document).ready(function() {
 			$("#mySearch3").on("keyup", function() {
-				var value = $(this).val().toLowerCase().trim(); // Ensure trimmed lowercase value
+				var value = $(this).val().toLowerCase().trim();
 				$("#std_results tr").each(function() {
 					var rowText = $(this).text().toLowerCase();
-					$(this).toggle(rowText.indexOf(value) > -1 || value === ""); // Toggle visibility based on match or empty value
+					$(this).toggle(rowText.indexOf(value) > -1 || value === "");
 				});
 			});
 		});
@@ -106,7 +107,7 @@ if (!$_SESSION['admin_username'] && !$_SESSION['admin_password']) {
 				var value = $(this).val().toLowerCase().trim(); // Ensure trimmed lowercase value
 				$("#teacher_search tr").each(function() {
 					var rowText = $(this).text().toLowerCase();
-					$(this).toggle(rowText.indexOf(value) > -1 || value === ""); // Toggle visibility based on match or empty value
+					$(this).toggle(rowText.indexOf(value) > -1 || value === "");
 				});
 			});
 		});
@@ -224,7 +225,7 @@ if (!$_SESSION['admin_username'] && !$_SESSION['admin_password']) {
 														?>
 															<tr>
 																<th scope="row"><?php echo $t_sn . "."; ?></th>
-																<th></th>
+																<th><img style="width:55px; height:43px;" class="rounded-circle" src = "../uploads/<?php echo isset($row['t_profile']) ? $row['t_profile'] : 'no-image.png'; ?>"></th>
 																<td><?php echo $row['t_name']; ?></td>
 																<td><?php echo $row['t_gender']; ?></td>
 																<td><?php echo $row['t_subject']; ?></td>
@@ -334,7 +335,7 @@ if (!$_SESSION['admin_username'] && !$_SESSION['admin_password']) {
 													sn++;
 													return `<tr>
 														<th scope="row">${sn}.</th>
-														<th></th>
+														<th><img style="width:55px; height:43px;" class="rounded-circle"  src ="../uploads/${item.student_profile ? item.student_profile : 'no-image.png'}"></th>
 														<td>${item.student_name}</td>
 														<td>${item.student_gender}</td>
 														<td>${item.student_parent}</td>
@@ -362,7 +363,7 @@ if (!$_SESSION['admin_username'] && !$_SESSION['admin_password']) {
 													sn++;
 													return `<tr>
 															<td rowspan="7">${sn}.</td>
-															<td rowspan = "7"></td>
+															<td rowspan = "7"><img style="width:55px; height:43px;" class ="rounded-circle" src ="../uploads/${results.student_profile ? results.student_profile : 'no-image.png'}"></td>
 															<td id="seacrh_name" rowspan="7">${results.student_name}</td>
 															<td>Mathematics</td>
 															<td>${results.Mathematics}%</td>
@@ -490,7 +491,7 @@ if (!$_SESSION['admin_username'] && !$_SESSION['admin_password']) {
 			</div>
 			<div class="sidebar-menu">
 				<header class="logo">
-					<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> <a href="index.php"><span id="logo">
+					<a href="#" class="sidebar-icon"><span class="fa fa-bars"></span></a><a href="#"><span id="logo">
 							<h1><?php echo $admin_username ?></h1>
 						</span>
 						<!--<img id="logo" src="" alt="Logo"/>-->
@@ -499,7 +500,7 @@ if (!$_SESSION['admin_username'] && !$_SESSION['admin_password']) {
 				<div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
 
 				<div class="down">
-					<a href="index.php"><img src="images/admin.jpg"></a>
+					<a href="#"><img src="images/profile_pic.jpg"></a>
 					<span class=" name-caret"><?php echo $admin_username ?></span>
 					<p>School Administrator</p>
 					<ul>
@@ -533,7 +534,6 @@ if (!$_SESSION['admin_username'] && !$_SESSION['admin_password']) {
 								<li id="menu-academico-boletim"><a href="#">Noticeboard</a></li>
 							</ul>
 						</li>
-
 					</ul>
 				</div>
 			</div>
