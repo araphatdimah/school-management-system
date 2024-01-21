@@ -758,7 +758,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Baneer-js -->
 
 <!-- Map-JavaScript -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLBAsAnFqgia1yl8Le56zIxUr-7hj8CDE"></script>        
+<script type="text/javascript" src=""></script>        
 			<script type="text/javascript">
 				google.maps.event.addDomListener(window, 'load', init);
 				function init() {
